@@ -1,0 +1,86 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <div id="left-section">
+            <img src="{{ listing.imageUrl}}" alt="{{ listing.title}}">
+        </div>
+        <div id="right-section">
+            <h2 id="title">{{ listing.title }}</h2>
+            <p>{{ listing.description }}</p>
+            <p>Ower: {{ listing.owner }} <hr/></p>
+            <p id="price">${{ listing.price }} <hr/></p>
+            <div class="row">
+                {% if user.is_authenticated %}
+                    {% if isListingInWatchList %}
+                        <form id="watchlist" action="{% url 'removeWatchlist' id=listing.id %}" method="POST">
+                            {% csrf_token %}
+                            <button id="watchlist" type="submit" class="btn btn-dark">Remove From Watchlists</button>
+                        </form>
+                    {% else %}
+                        <form id="watchlist" action="{% url 'addWatchlist' id=listing.id %}" method="POST">
+                            {% csrf_token %}
+                            <button id="watchlist" type="submit" class="btn btn-dark">Add From Watchlist</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            </div> 
+            {% if user.is_authenticated %}
+                <form action="{% url 'addComment' id=listing.id %}" method="POST" id="comment">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="price" class="form-label">Add Comment:</label>
+                        <input type="text"  name="newComment" placeholder="Add a New Comment">
+                        <button type="submit" class="btn btn-dark">Add</button>
+                    </div>
+                </form>
+            {% endif %}
+            <ul class="list-group">
+                {% for comment in allComments %}
+                    <li class="list-group-item">
+                        <strong>{{comment.author}}</strong>: {{comment.message}}
+                    </li>
+                {% endfor %}
+            </ul>   
+        </div>
+    </div>
+    
+    
+   
+    
+    <style>
+        .container{
+            display: flex;
+            width: 2000px;
+        }
+
+        img {
+            margin-top: 30px;
+            margin-right: 50px;
+            margin-left: -30px;
+        }
+
+        #title {
+            margin-top: 30px;
+        }
+
+        #price {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #watchlist{
+            width: 300px;
+        }
+
+        #comment{
+            margin-top: 30px;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <h1 id="big">DIOR</h1>
+        <div style="text-align: center;">
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+                Not signed in.
+            {% endif %}
+        </div>
+        <div id="menu"> 
+            <a class="a" id="option" href="{% url 'index' %}">Active Listings</a>
+            {% if user.is_authenticated %}
+                <a class="a" id="option" href="{% url 'create' %}">Create Listing</a>
+                <a class="a" id="option" href="{% url 'watchlist' %}">Watchlist</a>
+                <a class="" id="option" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                <a class="a" id="option" href="{% url 'login' %}">Log In</a>
+                <a class="" id="option" href="{% url 'register' %}">Register</a>
+            {% endif %}
+
+        </div>
+               
+        </ul>
+        <hr>
+        {% block body %}
+        {% endblock %}
+
+        <style>
+           #big {
+            text-align: center;
+            align-items: center;
+           }
+
+           #menu{
+            margin-top: 20px;
+            text-align: center;
+           }
+
+           .a {
+            margin-right: 30px;
+           }
+
+           #option{
+            color: black;
+            font-size: 20px;
+           }
+        </style>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <form action="{% url 'displayCategory' %}" method="POST" class="my-3">
+        {% csrf_token %}
+        <label for="cars">Choose a category:</label>
+            <select name="category" id="categories">
+                {% for category in categories %}
+                    <option value= "{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select> 
+        <button type="submit" class="btn btn-dark">Select</button>  
+    </form>
+    <div class="row mx-3">
+        {% for listing in listings %}
+            <div class="row mx-3" style="width: 18rem;">
+                <img class="card-img-top" src="{{ listing.imageUrl }}" alt="{ listing.title}" width="288" height="310" style="margin-bottom: -10px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <a href="{% url 'listing' id=listing.id %}" class="btn btn-dark">${{ listing.price}}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}
