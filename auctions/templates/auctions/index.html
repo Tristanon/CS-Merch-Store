@@ -1,24 +1,23 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <form action="{% url 'displayCategory' %}" method="POST" class="my-3">
+    <form action="{% url 'displayCategory' %}" style="margin-left: 2%;" method="POST" class="my-3">
         {% csrf_token %}
-        <label for="cars">Choose a category:</label>
-            <select name="category" id="categories">
-                {% for category in categories %}
-                    <option value= "{{ category }}">{{ category }}</option>
-                {% endfor %}
-            </select> 
-        <button type="submit" class="btn btn-dark">Select</button>  
+        <label style="align-items: center;" for="cars"></label>
+        <select style="height: 35px; align-items: center; border-radius: 10px; margin-top: 1px;" name="category" id="categories">
+            {% for category in categories %}
+                <option value= "{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select> 
+        <button style="height: 35px;";" type="submit" class="btn btn-danger">Select</button>  
     </form>
-    <div class="row mx-3">
+    <div style="justify-content: center ; margin-top: 2%;" class="row mx-3">
         {% for listing in listings %}
-            <div class="row mx-3" style="width: 18rem;">
+            <div class="row mx-3" style="width: 18rem; margin-right: 2%;">
                 <img class="card-img-top" src="{{ listing.imageUrl }}" alt="{ listing.title}" width="288" height="310" style="margin-bottom: -10px;">
                 <div class="card-body">
                     <h5 class="card-title">{{ listing.title }}</h5>
-                    <p class="card-text">{{ listing.description }}</p>
-                    <a href="{% url 'listing' id=listing.id %}" class="btn btn-dark">${{ listing.price}}</a>
+                    <a href="{% url 'listing' id=listing.id %}" class="btn btn-danger">${{ listing.price}}</a>
                 </div>
             </div>
         {% endfor %}

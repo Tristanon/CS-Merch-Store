@@ -6,53 +6,102 @@
         <title>{% block title %}Auctions{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1 id="big">DIOR</h1>
-        <div style="text-align: center;">
-            {% if user.is_authenticated %}
-                Signed in as <strong>{{ user.username }}</strong>.
-            {% else %}
-                Not signed in.
-            {% endif %}
+        <div id="container">
+            <div id="top-section">
+                <div id="first-line">
+                    <div id="image">
+                        <img style="float: left;" src="https://go.utah.edu/cas/images/uofu/ulogo_white.png" alt="">
+                    </div>
+                    <div id="title">
+                        <h1 id="title" style="font-size: 50px;">CS Merch Store</h1>
+                    </div>
+                    <div></div>
+                </div>
+                <div>Thank you for shopping with CS Merch Store! This is the best ways to support our organization and help us raise fund.</div>
+                <div style="text-align: center; margin-top: 1%; margin-bottom: 1%;">
+                    {% if user.is_authenticated %}
+                        Signed in as <strong>{{ user.username }}</strong>.
+                    {% else %}
+                        Not signed in.
+                    {% endif %}
+                </div>
+            </div>
+            <div id="menu"> 
+                <a class="a" id="option" href="{% url 'index' %}"><strong>Active Listings</strong></a>
+                {% if user.is_authenticated %}
+                    <a class="a" id="option" href="{% url 'create' %}"><strong>Listing</strong></a>
+                    <a class="a" id="option" href="{% url 'watchlist' %}"><strong>Watchlist</strong></a>
+                    <a class="" id="option" href="{% url 'logout' %}"><strong>Log Out</strong></a>
+                {% else %}
+                    <a class="a" id="option" href="{% url 'login' %}"><strong>Login</strong></a>
+                    <a class="" id="option" href="{% url 'register' %}"><strong>Register</strong></a>
+                {% endif %}
+    
+            </div>
+            <hr>
+            <div id="right-section">
+                <div id="right-content">
+                    {% block body %}
+                    {% endblock %}  
+                </div>
+            </div>
         </div>
-        <div id="menu"> 
-            <a class="a" id="option" href="{% url 'index' %}">Active Listings</a>
-            {% if user.is_authenticated %}
-                <a class="a" id="option" href="{% url 'create' %}">Create Listing</a>
-                <a class="a" id="option" href="{% url 'watchlist' %}">Watchlist</a>
-                <a class="" id="option" href="{% url 'logout' %}">Log Out</a>
-            {% else %}
-                <a class="a" id="option" href="{% url 'login' %}">Log In</a>
-                <a class="" id="option" href="{% url 'register' %}">Register</a>
-            {% endif %}
-
-        </div>
-               
-        </ul>
-        <hr>
-        {% block body %}
-        {% endblock %}
-
         <style>
-           #big {
-            text-align: center;
-            align-items: center;
-           }
+            html,body{
+                margin: 0px;
+                height: 100%;
+            }
 
-           #menu{
-            margin-top: 20px;
-            text-align: center;
-           }
+            #container{
+                position:absolute;
+                top:0px;
+                right:0px;
+                bottom:0px;
+                left:0px;
+            }
 
-           .a {
-            margin-right: 30px;
-           }
+            #top-section {
+                background-color: #cc0000;
+                width: 100%;
+                height: auto;
+                color: white; 
+                display: inline-block;  
+                text-align: center;
+            }
 
-           #option{
-            color: black;
-            font-size: 20px;
-           }
+            #first-line{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #image{
+                
+            }
+
+            #title{
+                font-family: 'Proza Libre', sans-serif;
+            }
+
+            #menu{
+                margin-top: 1%;
+                text-align: center;
+                font-size: 20px;
+            }
+
+            #option{
+                margin-right: 2%;
+                color: black;
+            }
+
+            #right-section{
+                margin: 20px;
+            }
         </style>
     </body>
 </html>

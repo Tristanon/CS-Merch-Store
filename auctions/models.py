@@ -12,8 +12,8 @@ class Category(models.Model):
         return self.categoryName
 
 class Listing(models.Model):
-    title = models.CharField(max_length = 50)
-    description = models.CharField(max_length = 100)
+    title = models.CharField(max_length = 100)
+    description = models.CharField(max_length = 1000)
     imageUrl = models.CharField(max_length = 1000)
     price = models.FloatField()
     isActive = models.BooleanField(default=True)
