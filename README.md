@@ -10,5 +10,7 @@
 - User can comment in each listing product
 ## Installation 
 ## Technologies
-- Fullstack - Django
-- Database - MySQL
+- Front-end - HTML, CSS , Bootstrap
+- Fullstack - Python, Django
+- Database - SQLite3
+- Host - Heroku
