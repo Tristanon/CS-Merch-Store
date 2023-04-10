@@ -1,4 +1,4 @@
-# DIOR-MARKET
+# CS-Merch
 (Description here) - Building/A online market  
 ## Available Features
 - User can see active listing of product
