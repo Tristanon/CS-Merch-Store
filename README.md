@@ -10,5 +10,3 @@
 ## Technologies
 - Fullstack - Django
 - Database - MySQL
-## Image
-- ![DIOR-WEBSITE](Screenshot_20230223_102758.png)
