@@ -1,5 +1,8 @@
 # CS-Merch
-(Description here) - Building/A online market  
+## Image
+![](https://user-images.githubusercontent.com/106542253/230991250-7ad8686a-9176-4e27-a42a-c6bcd6c6907c.png)
+## Description
+(note)
 ## Available Features
 - User can see active listing of product
 - User can choose the listing product by categories 
@@ -8,5 +11,7 @@
 - User can comment in each listing product
 ## Installation 
 ## Technologies
-- Fullstack - Django
-- Database - MySQL
+- Front-end - HTML, CSS , Bootstrap
+- Fullstack - Python, Django
+- Database - SQLite3
+- Host - Heroku
